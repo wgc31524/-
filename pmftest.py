@@ -4,14 +4,14 @@ from data import *
 
 class pmf():
     def __init__(self, 
-                 train_list,            # train_list: train data 
-                 test_list,             # test_list: test data
-                 N,                     # N:the number of user
-                 M,                     # M:the number of item
-                 K=10,                  # K: the number of latent factor
-                 learning_rate=0.001,   # learning_rate: the learning rata
-                 lamda_regularizer=0.1, # lamda_regularizer: regularization parameters
-                 max_iteration=50       # max_iteration: the max iteration
+                 train_list,           
+                 test_list,             
+                 N,                     
+                 M,                     
+                 K=10,                  
+                 learning_rate=0.001,  
+                 lamda_regularizer=0.1, 
+                 max_iteration=50      
                 ):
         self.train_list = train_list
         self.test_list = test_list
@@ -54,9 +54,9 @@ class pmf():
 
     def update(self, p, q, r, learning_rate=0.001, lamda_regularizer=0.1):
         e = r - np.dot(p, q.T)            
-        p = p + learning_rate*(e*q - lamda_regularizer*p)
+        p = p + learning_rate*(e*q - lamda_regularizer*p) #梯度下降
         q = q + learning_rate*(e*p - lamda_regularizer*q)
-        loss = 0.5 * (error**2 + lamda_regularizer*(np.square(p).sum() + np.square(q).sum()))
+        loss = 0.5 * (error**2 + lamda_regularizer*(np.square(p).sum() + np.square(q).sum())) #损失函数
         return p, q, loss
 
 
