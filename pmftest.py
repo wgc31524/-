@@ -1,7 +1,6 @@
 import numpy as np
 import random
 from data import *
-from evaluation import *
 
 class pmf():
     def __init__(self, 
@@ -54,9 +53,9 @@ class pmf():
 
 
     def update(self, p, q, r, learning_rate=0.001, lamda_regularizer=0.1):
-        error = r - np.dot(p, q.T)            
-        p = p + learning_rate*(error*q - lamda_regularizer*p)
-        q = q + learning_rate*(error*p - lamda_regularizer*q)
+        e = r - np.dot(p, q.T)            
+        p = p + learning_rate*(e*q - lamda_regularizer*p)
+        q = q + learning_rate*(e*p - lamda_regularizer*q)
         loss = 0.5 * (error**2 + lamda_regularizer*(np.square(p).sum() + np.square(q).sum()))
         return p, q, loss
 
@@ -79,12 +78,6 @@ class pmf():
         rmse = np.sqrt(mean_squared_error(y_true, y_pred))
         return mae, rmse
         def sequence2mat(sequence, N, M):
-        # input:
-        # sequence: the list of rating information
-        # N: row number, i.e. the number of users
-        # M: column number, i.e. the number of items
-        # output:
-        # mat: user-item rating matrix
             records_array = np.array(sequence)
             mat = np.zeros([N,M])
             row = records_array[:,0].astype(int)
