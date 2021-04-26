@@ -1,1 +1,2 @@
-# -推荐系统第一次作业——PMF
+# -推荐系统第二次作业——LARA
+![image](https://user-images.githubusercontent.com/29112958/116096108-956e1400-a6db-11eb-91db-bade0311b2c5.png)
